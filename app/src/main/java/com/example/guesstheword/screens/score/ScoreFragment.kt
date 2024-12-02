@@ -18,7 +18,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.guesstheword.R
 import com.example.guesstheword.databinding.FragmentScoreBinding
-import com.example.guesstheword.screens.score.ScoreFragmentDirections
+import com.example.guesstheword.screens.game.GameFragment
+import com.example.guesstheword.screens.game.SCORE
+
 
 
 class ScoreFragment : Fragment() {
@@ -34,8 +36,9 @@ class ScoreFragment : Fragment() {
             false
         )
         // Get args using by navArgs property delegate
-        val scoreFragmentArgs = ScoreFragmentArgs.fromBundle(requireArguments())
-        binding.scoreText.text = scoreFragmentArgs.score.toString()
+        val score = arguments?.getInt(SCORE)
+
+        binding.scoreText.text = score.toString()
         binding.playAgainButton.setOnClickListener { view: View ->
             Navigation.findNavController(view).popBackStack()
         }

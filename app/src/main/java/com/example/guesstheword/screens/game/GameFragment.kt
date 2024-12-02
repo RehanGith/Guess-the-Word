@@ -13,7 +13,7 @@ import com.example.guesstheword.databinding.FragmentGameBinding
 import com.example.guesstheword.screens.game.GameFragmentDirections
 
 
-
+const val SCORE = "score"
 
 class GameFragment : Fragment() {
     // The current word
@@ -82,8 +82,9 @@ class GameFragment : Fragment() {
      * Called when the game is finished
      */
     private fun gameFinished() {
-        val action = GameFragmentDirections.actionGameToScore()
-        findNavController().navigate(action)
+        val bundle = Bundle()
+        bundle.putInt(SCORE, score)
+        findNavController().navigate(R.id.action_game_to_score, bundle)
     }
     /**
      * Moves to the next word in the list
