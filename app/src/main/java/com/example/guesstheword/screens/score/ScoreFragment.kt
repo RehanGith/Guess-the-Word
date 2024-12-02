@@ -30,7 +30,6 @@ class ScoreFragment : Fragment() {
             container,
             false
         )
-
         // Get args using by navArgs property delegate
         val scoreFragmentArgs = ScoreFragmentArgs.fromBundle(requireArguments())
         binding.scoreText.text = scoreFragmentArgs.score.toString()
