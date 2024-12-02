@@ -22,8 +22,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-legacy = {group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacy"}
-androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment", version.ref = "kotlinx" }
-androidx-navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "kotlinx" }
+androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "kotlinx" }
+androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "kotlinx" }
 
 
 [plugins]

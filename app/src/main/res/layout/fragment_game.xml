@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/word_is_text"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text=""/>
+            tools:text="0.00"/>
 
         <TextView
             android:id="@+id/timer_text"

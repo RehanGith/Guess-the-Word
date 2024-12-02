@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.guesstheword.R
+import com.example.guesstheword.databinding.FragmentScoreBinding
 
 
 class ScoreFragment : Fragment() {
@@ -25,7 +27,7 @@ class ScoreFragment : Fragment() {
         )
 
         // Get args using by navArgs property delegate
-        val scoreFragmentArgs by navArgs<ScoreFragmentArgs>()
+        val scoreFragmentArgs = ScoreFragmentArgs.fromBundle(requireArguments())
         binding.scoreText.text = scoreFragmentArgs.score.toString()
         binding.playAgainButton.setOnClickListener { onPlayAgain() }
 

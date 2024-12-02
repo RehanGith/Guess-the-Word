@@ -5,8 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.guesstheword.R
+import com.example.guesstheword.databinding.FragmentGameBinding
+
+
 
 
 class GameFragment : Fragment() {
@@ -14,7 +19,7 @@ class GameFragment : Fragment() {
     private var word = ""
 
     // The current score
-    private var score = 0
+    private var score:Int = 0
 
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
@@ -76,10 +81,9 @@ class GameFragment : Fragment() {
      * Called when the game is finished
      */
     private fun gameFinished() {
-        val action = GameFragmentDirections.actionGameToScore(score)
-        findNavController(this).navigate(action)
+        val action = GameFragmentDirections.actionGameToScore()
+        findNavController().navigate(action)
     }
-
     /**
      * Moves to the next word in the list
      */
