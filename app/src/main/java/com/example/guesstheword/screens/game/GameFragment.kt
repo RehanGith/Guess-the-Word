@@ -1,11 +1,13 @@
 package com.example.guesstheword.screens.game
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.guesstheword.R
@@ -19,6 +21,7 @@ const val CUR_WORD = "current word"
 class GameFragment : Fragment() {
     // The current word
     private var word = ""
+    lateinit var viewModel: GameViewModel
 
     // The current score
     private var score:Int = 0
@@ -39,6 +42,8 @@ class GameFragment : Fragment() {
             container,
             false
         )
+        Log.i("GameFragment", "ViewModelProvider called")
+        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
         resetList()
         nextWord()
 
