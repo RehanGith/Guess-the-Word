@@ -11,11 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.guesstheword.R
 import com.example.guesstheword.databinding.FragmentScoreBinding
+import com.example.guesstheword.screens.score.ScoreFragmentDirections
 
 
 class ScoreFragment : Fragment() {
@@ -33,7 +36,9 @@ class ScoreFragment : Fragment() {
         // Get args using by navArgs property delegate
         val scoreFragmentArgs = ScoreFragmentArgs.fromBundle(requireArguments())
         binding.scoreText.text = scoreFragmentArgs.score.toString()
-        binding.playAgainButton.setOnClickListener { onPlayAgain() }
+        binding.playAgainButton.setOnClickListener { view: View ->
+            Navigation.findNavController(view).popBackStack()
+        }
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -55,9 +60,7 @@ class ScoreFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-    private fun onPlayAgain() {
-        findNavController().navigate(ScoreFragmentDirections.actionRestart())
-    }
+
 
 
 }
