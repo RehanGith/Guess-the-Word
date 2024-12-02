@@ -24,12 +24,12 @@ import com.example.guesstheword.screens.game.SCORE
 
 
 class ScoreFragment : Fragment() {
-
+    lateinit private var binding: FragmentScoreBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentScoreBinding =  DataBindingUtil.inflate(
+        binding =  DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_score,
             container,
@@ -46,7 +46,7 @@ class ScoreFragment : Fragment() {
         return binding.root
     }
     private fun getShareIntent(): Intent {
-        return ShareCompat.IntentBuilder.from(requireActivity()).setText(getString(R.string.about_text)).setType("text/plain").intent
+        return ShareCompat.IntentBuilder.from(requireActivity()).setText("You have gotten ${binding.scoreText.text} scores with this app.").setType("text/plain").intent
     }
     private fun shareSucess() {
         startActivity(getShareIntent())

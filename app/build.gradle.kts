@@ -43,7 +43,7 @@ dependencies {
     implementation(libs.androidx.legacy)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.fragment)
-
+    implementation(libs.androidx.lifecyle.viewmodel)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

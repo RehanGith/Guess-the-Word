@@ -14,6 +14,7 @@ import com.example.guesstheword.screens.game.GameFragmentDirections
 
 
 const val SCORE = "score"
+const val CUR_WORD = "current word"
 
 class GameFragment : Fragment() {
     // The current word
@@ -111,6 +112,7 @@ class GameFragment : Fragment() {
         score++
         nextWord()
     }
+
 
     /** Methods for updating the UI **/
 
