@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.guesstheword.R
 import com.example.guesstheword.databinding.FragmentGameBinding
+import com.example.guesstheword.screens.game.GameFragmentDirections
 
 
 

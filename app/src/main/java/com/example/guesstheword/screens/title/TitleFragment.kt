@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.guesstheword.R
 import com.example.guesstheword.databinding.FragmentTitleBinding
+import com.example.guesstheword.screens.title.TitleFragmentDirections
 
 
 class TitleFragment : Fragment() {
