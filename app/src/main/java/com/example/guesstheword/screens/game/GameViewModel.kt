@@ -1,13 +1,10 @@
 package com.example.guesstheword.screens.game
 
-import android.os.Bundle
+
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.fragment.findNavController
-import com.example.guesstheword.R
 
 class GameViewModel : ViewModel() {
     private val word = MutableLiveData<String>()

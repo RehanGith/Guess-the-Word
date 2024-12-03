@@ -22,7 +22,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+  androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-legacy = {group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacy"}
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "kotlinx" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "kotlinx" }

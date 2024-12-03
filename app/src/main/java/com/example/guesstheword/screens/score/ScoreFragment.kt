@@ -13,6 +13,8 @@ import android.view.ViewGroup
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -27,9 +29,9 @@ import com.example.guesstheword.screens.game.SCORE
 
 
 class ScoreFragment : Fragment() {
-    lateinit private var binding: FragmentScoreBinding
-    lateinit var viewModel: ScoreViewModel
-    lateinit var viewModelFactory: ScoreViewModelFactory
+    private lateinit var binding: FragmentScoreBinding
+    private lateinit var viewModel: ScoreViewModel
+    private lateinit var viewModelFactory: ScoreViewModelFactory
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,15 +42,14 @@ class ScoreFragment : Fragment() {
             container,
             false
         )
-        val score = arguments?.getInt(SCORE)
-        if (score != null) {
-            viewModelFactory = ScoreViewModelFactory(score.toInt())
-        }
+        viewModelFactory = arguments?.getInt(SCORE)?.let { ScoreViewModelFactory(it) }!!
         viewModel = ViewModelProvider(this, viewModelFactory)[ScoreViewModel::class.java]
-
-        binding.scoreText.text = score.toString()
         binding.playAgainButton.setOnClickListener { view: View ->
             Navigation.findNavController(view).popBackStack()
+
+        }
+        viewModel.getScore().observe(viewLifecycleOwner) { f_score ->
+            binding.scoreText.text = f_score.toString()
         }
         setHasOptionsMenu(true)
         return binding.root
@@ -71,6 +72,7 @@ class ScoreFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 
 
 
