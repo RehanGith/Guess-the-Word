@@ -1,6 +1,7 @@
 package com.example.guesstheword.screens.game
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,28 +9,61 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.example.guesstheword.R
 
-class GameViewModel: ViewModel() {
+class GameViewModel : ViewModel() {
     private val word = MutableLiveData<String>()
     private val score = MutableLiveData<Int>()
     lateinit private var wordList: MutableList<String>
+    private val currentTime = MutableLiveData<Long>()
     private val isFinishedGame = MutableLiveData<Boolean>()
+
+    companion object {
+        private const val DONE = 0L
+        private const val ONE_SECOND = 1000L
+        private const val SIXTY_SECOND = 60000L
+    }
+
+    private val timer: CountDownTimer
+
     init {
         score.value = 0
         word.value = ""
+        currentTime.value = 0
         isFinishedGame.value = false
         resetList()
         nextWord()
+        timer = object : CountDownTimer(SIXTY_SECOND, ONE_SECOND) {
+            override fun onTick(p0: Long) {
+                currentTime.value = (SIXTY_SECOND / ONE_SECOND)
+            }
+
+            override fun onFinish() {
+                currentTime.value = DONE
+                isFinishedGame.value = true
+            }
+
+        }
+        timer.start()
+
 
     }
+
     fun getScore(): LiveData<Int> {
         return score
     }
-    fun getWord() : LiveData<String> {
+
+
+    fun getWord(): LiveData<String> {
         return word
     }
+
     fun getFinishedState(): LiveData<Boolean> {
         return isFinishedGame
     }
+
+    fun getCurrentTime(): LiveData<Long> {
+        return currentTime
+    }
+
     fun resetList() {
         wordList = mutableListOf(
             "queen",
@@ -64,11 +98,12 @@ class GameViewModel: ViewModel() {
     private fun nextWord() {
         //Select and remove a word from the list
         if (wordList.isEmpty()) {
-            isFinishedGame.value = true
+            resetList()
         } else {
             word.value = wordList.removeAt(0)
         }
     }
+
     fun onSkip() {
         score.value = (score.value)?.minus(1)
         nextWord()
@@ -82,9 +117,10 @@ class GameViewModel: ViewModel() {
     fun changeFinishedState() {
         isFinishedGame.value = false
     }
+
     /** Methods for updating the UI **/
     override fun onCleared() {
         super.onCleared()
-        Log.i("GameViewModel", "onCleared called")
+        timer.cancel()
     }
 }
