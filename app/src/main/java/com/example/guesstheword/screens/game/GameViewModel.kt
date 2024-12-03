@@ -2,20 +2,22 @@ package com.example.guesstheword.screens.game
 
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.example.guesstheword.R
 
 class GameViewModel: ViewModel() {
+    val word = MutableLiveData<String>()
+    val score = MutableLiveData<Int>()
+    lateinit var wordList: MutableList<String>
     init {
-        Log.i("GameViewModel", "initialize GameViewModel")
+        score.value = 0
+        word.value = ""
         resetList()
         nextWord()
 
     }
-    var word = ""
-    var score:Int = 0
-    lateinit var wordList: MutableList<String>
 
     fun resetList() {
         wordList = mutableListOf(
@@ -52,16 +54,16 @@ class GameViewModel: ViewModel() {
         if (wordList.isEmpty()) {
             //    gameFinished()
         } else {
-            word = wordList.removeAt(0)
+            word.value = wordList.removeAt(0)
         }
     }
     fun onSkip() {
-        score--
+        score.value = (score.value)?.minus(1)
         nextWord()
     }
 
     fun onCorrect() {
-        score++
+        score.value = (score.value)?.plus(1)
         nextWord()
     }
 
