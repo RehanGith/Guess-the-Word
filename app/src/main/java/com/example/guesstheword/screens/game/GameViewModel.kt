@@ -19,7 +19,7 @@ class GameViewModel : ViewModel() {
     companion object {
         private const val DONE = 0L
         private const val ONE_SECOND = 1000L
-        private const val SIXTY_SECOND = 60000L
+        private const val SIXTY_SECOND = 2000L
     }
 
     private val timer: CountDownTimer
@@ -33,7 +33,7 @@ class GameViewModel : ViewModel() {
         nextWord()
         timer = object : CountDownTimer(SIXTY_SECOND, ONE_SECOND) {
             override fun onTick(p0: Long) {
-                currentTime.value = (SIXTY_SECOND / ONE_SECOND)
+                currentTime.value = (p0 / ONE_SECOND)
             }
 
             override fun onFinish() {
