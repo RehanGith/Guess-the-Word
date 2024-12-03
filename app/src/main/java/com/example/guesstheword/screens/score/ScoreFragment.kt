@@ -2,8 +2,6 @@ package com.example.guesstheword.screens.score
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,20 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.guesstheword.R
 import com.example.guesstheword.databinding.FragmentScoreBinding
-import com.example.guesstheword.screens.game.GameFragment
 import com.example.guesstheword.screens.game.SCORE
-
 
 
 class ScoreFragment : Fragment() {
@@ -44,12 +34,10 @@ class ScoreFragment : Fragment() {
         )
         viewModelFactory = arguments?.getInt(SCORE)?.let { ScoreViewModelFactory(it) }!!
         viewModel = ViewModelProvider(this, viewModelFactory)[ScoreViewModel::class.java]
+        binding.scoreViewModel = viewModel
+        binding.lifecycleOwner = this
         binding.playAgainButton.setOnClickListener { view: View ->
             Navigation.findNavController(view).popBackStack()
-
-        }
-        viewModel.getScore().observe(viewLifecycleOwner) { f_score ->
-            binding.scoreText.text = f_score.toString()
         }
         setHasOptionsMenu(true)
         return binding.root

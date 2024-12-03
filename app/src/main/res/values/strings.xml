@@ -9,7 +9,9 @@
     <string name="got_it">Got it</string>
     <string name="word_is">The word is…</string>
     <string name="quote_format">\"%s\"</string>
+    <string name="time_format">time remains : %d </string>
     <string name="score_format">Current Score: %d</string>
+    <string name="you_score"> %d </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="about_text">This game is about guessing the words in your mind. But the main purpose of is understanding system configuration.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
