@@ -43,20 +43,22 @@ class GameFragment : Fragment() {
         binding.skipButton.setOnClickListener {
             viewModel.onSkip()
         }
-        viewModel.score.observe(viewLifecycleOwner , Observer { newScore ->
+        viewModel.getScore().observe(viewLifecycleOwner , Observer { newScore ->
             binding.scoreText.text = newScore.toString()
         })
-        viewModel.word.observe(viewLifecycleOwner , Observer { newWord ->
+        viewModel.getWord().observe(viewLifecycleOwner , Observer { newWord ->
             binding.wordText.text = newWord
         })
+        viewModel.getFinishedState().observe(viewLifecycleOwner, Observer { isFinished ->
+            if(isFinished) {
+                val currentScore = viewModel.getScore().value ?: 0
+                val bundle = Bundle()
+                bundle.putInt(SCORE, currentScore)
+                findNavController().navigate(R.id.action_game_to_score, bundle)
+                viewModel.changeFinishedState()
+            }
+        })
         return binding.root
-    }
-
-    fun gameFinished() {
-        val currentScore = viewModel.score.value ?: 0
-        val bundle = Bundle()
-        bundle.putInt(SCORE, currentScore)
-        findNavController().navigate(R.id.action_game_to_score, bundle)
     }
 
 }
