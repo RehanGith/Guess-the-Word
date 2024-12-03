@@ -35,15 +35,11 @@ class GameFragment : Fragment() {
             container,
             false
         )
-        binding.gameViewModel = viewModel
-        viewModel = ViewModelProvider(this)[GameViewModel::class.java]
 
-        viewModel.getScore().observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
-        viewModel.getWord().observe(viewLifecycleOwner, Observer { newWord ->
-            binding.wordText.text = newWord
-        })
+        viewModel = ViewModelProvider(this)[GameViewModel::class.java]
+        binding.gameViewModel = viewModel
+        binding.lifecycleOwner = this
+
         viewModel.getFinishedState().observe(viewLifecycleOwner, Observer { isFinished ->
             if (isFinished) {
                 val currentScore = viewModel.getScore().value ?: 0
