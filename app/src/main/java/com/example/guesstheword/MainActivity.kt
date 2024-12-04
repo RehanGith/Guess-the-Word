@@ -13,10 +13,10 @@ import com.example.guesstheword.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit private var navController: NavController
-    lateinit private var appBarConfiguration: AppBarConfiguration
-    lateinit private var drawerLayout: DrawerLayout
-    lateinit private var binding:ActivityMainBinding
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var binding:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
